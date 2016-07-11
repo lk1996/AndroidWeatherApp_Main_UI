@@ -1,11 +1,13 @@
 package com.example.akchen.main_ui.Activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
@@ -36,7 +38,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_editplan);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         daTextView = (TextView) findViewById(R.id.tv_date);
@@ -48,8 +50,6 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         editText.setMovementMethod(ScrollingMovementMethod.getInstance());
         editText.setSelection(editText.getText().length(),editText.getText().length());
         editText.getText().append("msg");
-//        ActionBar actionBar=getActionBar();
-//        actionBar.hide();
         popupMenu=new PopupMenu(this,findViewById(R.id.Menu));
         menu=popupMenu.getMenu();
         getMenuInflater().inflate(R.menu.popup_menu,menu);
