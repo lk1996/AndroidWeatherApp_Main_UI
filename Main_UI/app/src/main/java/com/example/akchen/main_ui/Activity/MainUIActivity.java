@@ -25,7 +25,7 @@ public class MainUIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_main_ui);
         final MainUIFragment mainFragment = MainUIFragment.newInstance(0);
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -37,10 +37,7 @@ public class MainUIActivity extends AppCompatActivity {
         //使用心知天气官网获取的key和用户id初始化WeatherManager
         weatherManager.initWithKeyAndUserId("voxdfkclylzg3hjf","U3D4EAF09E");
 
-        getSupportActionBar().hide();
        // 获取北京当前天气，使用简体中文、摄氏度
-        //ActionBar actionBar=getActionBar();
-        //actionBar.hide();
        weatherManager.getWeatherNow(new TPCity("beijing")
                 , TPWeatherManager.TPWeatherReportLanguage.kSimplifiedChinese
                 , TPWeatherManager.TPTemperatureUnit.kCelsius
