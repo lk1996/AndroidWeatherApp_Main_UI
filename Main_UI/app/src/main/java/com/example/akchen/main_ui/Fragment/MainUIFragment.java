@@ -7,12 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.akchen.main_ui.Activity.EditPlan;
+import com.example.akchen.main_ui.Activity.EditPlanActivity;
+import com.example.akchen.main_ui.Activity.PlanScheduleActivity;
 import com.example.akchen.main_ui.Adapter.MyShowAdapter;
 import com.example.akchen.main_ui.R;
 import com.thinkpage.lib.api.TPAirQuality;
@@ -48,6 +50,7 @@ public class MainUIFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private ImageButton addPlanButton=null;
+    private Button calendarButton=null;
     public MainUIFragment() {
         // Required empty public constructor
     }
@@ -182,16 +185,24 @@ public class MainUIFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the planschedulerow for this fragment
         View rt =inflater.inflate(R.layout.fragment_main_ui, container, false);
         mView = rt;
         addPlanButton=(ImageButton)rt.findViewById(R.id.id_add_btn);
         addPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), EditPlan.class);
+                Intent intent=new Intent(getActivity(), EditPlanActivity.class);
                 getActivity().startActivity(intent);
 
+            }
+        });
+      calendarButton=(Button)rt.findViewById(R.id.buttonCalendar);
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), PlanScheduleActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         return rt;

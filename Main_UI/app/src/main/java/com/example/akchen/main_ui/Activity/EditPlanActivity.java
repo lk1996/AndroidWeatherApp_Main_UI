@@ -1,6 +1,5 @@
 package com.example.akchen.main_ui.Activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -21,7 +20,7 @@ import com.example.akchen.main_ui.others.widget.DateTimeSelectorDialogBuilder;
  * Created by Jake on 16/7/11.
  */
 
-public class EditPlan extends Activity implements DateTimeSelectorDialogBuilder.OnSaveListener, View.OnClickListener {
+public class EditPlanActivity extends Activity implements DateTimeSelectorDialogBuilder.OnSaveListener, View.OnClickListener {
     private DateTimeSelectorDialogBuilder dialogBuilder;
     private TextView daTextView;
     private TextView endTime;
@@ -65,7 +64,7 @@ public class EditPlan extends Activity implements DateTimeSelectorDialogBuilder.
 
                         break;
                     case R.id.save:
-                        Toast.makeText(EditPlan.this, "保存",
+                        Toast.makeText(EditPlanActivity.this, "保存",
                                 Toast.LENGTH_LONG).show();
                         Plan plan=new Plan();
                         plan.setTimeStart(timeStart);
@@ -74,7 +73,7 @@ public class EditPlan extends Activity implements DateTimeSelectorDialogBuilder.
 
                         break;
                     case R.id.delete:
-                        Toast.makeText(EditPlan.this,"删除",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditPlanActivity.this,"删除",Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;

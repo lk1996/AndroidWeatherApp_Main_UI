@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.akchen.main_ui.Activity.EditPlan" >
+    tools:context="com.example.akchen.main_ui.Activity.EditPlanActivity" >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

@@ -1,8 +1,11 @@
 package com.example.akchen.main_ui.Activity;
 
+import android.app.ActionBar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
 import com.example.akchen.main_ui.R;
@@ -22,6 +25,7 @@ public class MainUIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_ui);
         final MainUIFragment mainFragment = MainUIFragment.newInstance(0);
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

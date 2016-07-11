@@ -80,7 +80,7 @@ public class WheelView extends View {
 	// private static final int ITEM_OFFSET = TEXT_SIZE / 10;
 	private int ITEM_OFFSET = TEXT_SIZE / 10;
 
-	/** Additional width for items layout */
+	/** Additional width for items planschedulerow */
 	private static final int ADDITIONAL_ITEMS_SPACE = 10;
 
 	/** Label offset */
@@ -460,11 +460,11 @@ public class WheelView extends View {
 	}
 	
 	/**
-	 * Calculates desired height for layout
+	 * Calculates desired height for planschedulerow
 	 * 
 	 * @param layout
-	 *            the source layout
-	 * @return the desired layout height
+	 *            the source planschedulerow
+	 * @return the desired planschedulerow height
 	 */
 	private int getDesiredHeight(Layout layout) {
 		if (layout == null) {
@@ -579,9 +579,9 @@ public class WheelView extends View {
 	 * Calculates control width and creates text layouts
 	 * 
 	 * @param widthSize
-	 *            the input layout width
+	 *            the input planschedulerow width
 	 * @param mode
-	 *            the layout mode
+	 *            the planschedulerow mode
 	 * @return the calculated control width
 	 */
 	@SuppressLint("FloatMath")
@@ -652,9 +652,9 @@ public class WheelView extends View {
 	 * Creates layouts
 	 * 
 	 * @param widthItems
-	 *            width of items layout
+	 *            width of items planschedulerow
 	 * @param widthLabel
-	 *            width of label layout
+	 *            width of label planschedulerow
 	 */
 	private void createLayouts(int widthItems, int widthLabel) {
 		if (itemsLayout == null || itemsLayout.getWidth() > widthItems) {
@@ -758,7 +758,7 @@ public class WheelView extends View {
 	}
 
 	/**
-	 * Draws value and label layout
+	 * Draws value and label planschedulerow
 	 * 
 	 * @param canvas
 	 *            the canvas for drawing
