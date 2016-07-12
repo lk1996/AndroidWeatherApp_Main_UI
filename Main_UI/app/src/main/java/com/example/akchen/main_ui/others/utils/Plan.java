@@ -9,6 +9,7 @@ public class Plan {
     private String planContent;
     private String timeStart;
     private String timeEnd;
+    private int userId;
 
     public int getId()
     {
@@ -51,5 +52,14 @@ public class Plan {
     public void setTimeEnd(String timeEnd)
     {
         this.timeEnd=timeEnd;
+    }
+
+    public int getUserId()
+    {
+        return userId;
+    }
+    public void setUserId(int userId)
+    {
+        this.userId=userId;
     }
 }

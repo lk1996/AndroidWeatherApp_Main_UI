@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
+import com.example.akchen.main_ui.R;
 
 import java.util.ArrayList;
 
@@ -13,17 +14,27 @@ import java.util.ArrayList;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static   ArrayList<MainUIFragment> fragmentsList=new ArrayList<>();
+    private static ArrayList<MainUIFragment> fragmentsList = new ArrayList<>();
 
     public static ArrayList<MainUIFragment> getFragmentsList() {
         return fragmentsList;
     }
 
+    private static FragmentManager fragmentManager;
+
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
+        fragmentManager = fm;
+
     }
+
     @Override
-    public  Fragment getItem(int position) {
+    public Fragment getItem(int position) {
+        if (position != 0) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragmentsList.get(position))
+                    .commit();
+        }
         return fragmentsList.get(position);
     }
 
