@@ -10,6 +10,9 @@ import android.view.WindowManager;
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
 import com.example.akchen.main_ui.R;
 import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
+import com.example.akchen.main_ui.others.utils.Plan;
+import com.example.akchen.main_ui.others.utils.User;
+import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.thinkpage.lib.api.TPCity;
 import com.thinkpage.lib.api.TPListeners;
 import com.thinkpage.lib.api.TPWeatherDaily;
@@ -22,16 +25,29 @@ public class MainUIActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionAdapter =null;
     private ViewPager mViewPager;
+    private WeatherDB weatherDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_ui);
         final MainUIFragment mainFragment = MainUIFragment.newInstance(0);
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         SectionsPagerAdapter.getFragmentsList().add(0,mainFragment);
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionAdapter);
+        getSupportActionBar().hide();
+       weatherDB=WeatherDB.getInstance(this);
+        User user = new User();
+        Plan plan = new Plan();
+        user.setUserAccount("ALAN");
+        user.setUserCity("曲靖");
+        weatherDB.saveUser(user);
+        plan.setUserId(1);
+        plan.setPlanName("LZW");
+        plan.setPlanContent("LOVE");
+        plan.setTimeStart("2008年9月1日");
+        plan.setTimeEnd("2014年6月8日");
+        weatherDB.savePlan(plan);
         //获取北京的天气
         TPWeatherManager weatherManager = TPWeatherManager.sharedWeatherManager();
         //使用心知天气官网获取的key和用户id初始化WeatherManager

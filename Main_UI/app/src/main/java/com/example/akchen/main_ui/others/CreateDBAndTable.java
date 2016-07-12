@@ -11,23 +11,31 @@ public class CreateDBAndTable extends SQLiteOpenHelper {
 
     public static final String CREATE_PLAN="create table Plan ("
             +"id integer primary key autoincrement, "
+            +"user_id integer, "
             +"time_start text, "
             +"time_end text, "
             +"plan_name text, "
-            +"plan_content integer)";
+            +"plan_content text, "
+            +"foreign key(user_id) references User(id) )";
+
+    public static final String CREATE_USER="create table User ("
+            +"id integer primary key autoincrement, "
+            +"user_account text, "
+            +"user_city text)" ;
     public CreateDBAndTable(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)
     {
         super(context,name,factory,version);
     }
     public void onCreate(SQLiteDatabase db)
     {
-
         db.execSQL(CREATE_PLAN);
+        db.execSQL(CREATE_USER);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
 
         db.execSQL("drop table if exists Plan");
+        db.execSQL("drop table if exists User");
         onCreate(db);
 
     }
