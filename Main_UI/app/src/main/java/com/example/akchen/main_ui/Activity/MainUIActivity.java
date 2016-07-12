@@ -12,13 +12,10 @@ import android.widget.Button;
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
 import com.example.akchen.main_ui.R;
 import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
-<<<<<<< HEAD
 import com.example.akchen.main_ui.others.utils.Plan;
 import com.example.akchen.main_ui.others.utils.User;
 import com.example.akchen.main_ui.others.utils.WeatherDB;
-=======
 import com.example.akchen.main_ui.others.widget.LocationSelectorDialogBuilder;
->>>>>>> master
 import com.thinkpage.lib.api.TPCity;
 import com.thinkpage.lib.api.TPListeners;
 import com.thinkpage.lib.api.TPWeatherDaily;
@@ -32,15 +29,12 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
 
     private SectionsPagerAdapter mSectionAdapter = null;
     private ViewPager mViewPager;
-<<<<<<< HEAD
     private WeatherDB weatherDB;
-=======
     private Button main_add = null;
     private Button main_share = null;
     private LocationSelectorDialogBuilder locationBuilder;
     private TPWeatherManager weatherManager;
     private   static ArrayList<MainUIFragment> fragmentsList;
->>>>>>> master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,25 +48,27 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionAdapter);
-<<<<<<< HEAD
         getSupportActionBar().hide();
-       weatherDB=WeatherDB.getInstance(this);
-        User user = new User();
-        Plan plan = new Plan();
-        user.setUserAccount("ALAN");
-        user.setUserCity("曲靖");
-        weatherDB.saveUser(user);
-        plan.setUserId(1);
-        plan.setPlanName("LZW");
-        plan.setPlanContent("LOVE");
-        plan.setTimeStart("2008年9月1日");
-        plan.setTimeEnd("2014年6月8日");
-        weatherDB.savePlan(plan);
-=======
+//
+//<<<<<<< HEAD
+//
+//       weatherDB=WeatherDB.getInstance(this);
+//        User user = new User();
+//        Plan plan = new Plan();
+//        user.setUserAccount("ALAN");
+//        user.setUserCity("曲靖");
+//        weatherDB.saveUser(user);
+//        plan.setUserId(1);
+//        plan.setPlanName("LZW");
+//        plan.setPlanContent("LOVE");
+//        plan.setTimeStart("2008年9月1日");
+//        plan.setTimeEnd("2014年6月8日");
+//        weatherDB.savePlan(plan);
+//=======
 
 
 
->>>>>>> master
+//>>>>>>> master
         //获取北京的天气
         weatherManager = TPWeatherManager.sharedWeatherManager();
         //使用心知天气官网获取的key和用户id初始化WeatherManager
