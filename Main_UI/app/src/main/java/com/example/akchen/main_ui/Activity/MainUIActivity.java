@@ -48,27 +48,8 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionAdapter);
-        getSupportActionBar().hide();
-//
-//<<<<<<< HEAD
-//
-//       weatherDB=WeatherDB.getInstance(this);
-//        User user = new User();
-//        Plan plan = new Plan();
-//        user.setUserAccount("ALAN");
-//        user.setUserCity("曲靖");
-//        weatherDB.saveUser(user);
-//        plan.setUserId(1);
-//        plan.setPlanName("LZW");
-//        plan.setPlanContent("LOVE");
-//        plan.setTimeStart("2008年9月1日");
-//        plan.setTimeEnd("2014年6月8日");
-//        weatherDB.savePlan(plan);
-//=======
 
 
-
-//>>>>>>> master
         //获取北京的天气
         weatherManager = TPWeatherManager.sharedWeatherManager();
         //使用心知天气官网获取的key和用户id初始化WeatherManager
@@ -123,7 +104,10 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
 
         location = "shanghai";
 
-        final MainUIFragment newFragment = new MainUIFragment();
+        final MainUIFragment newFragment = MainUIFragment.newInstance();
+        SectionsPagerAdapter.getFragmentsList().add(fragmentsList.size(), newFragment);
+        mViewPager.setAdapter(mSectionAdapter);
+
         // 获取北京当前天气，使用简体中文、摄氏度
         weatherManager.getWeatherNow(new TPCity(location)
                 , TPWeatherManager.TPWeatherReportLanguage.kSimplifiedChinese
@@ -159,7 +143,6 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
 
         );
 
-//        SectionsPagerAdapter.getFragmentsList().add(newFragment);
 
 
     }
