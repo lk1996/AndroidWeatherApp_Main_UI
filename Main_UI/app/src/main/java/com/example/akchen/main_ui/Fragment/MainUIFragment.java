@@ -4,6 +4,7 @@ package com.example.akchen.main_ui.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,13 @@ import android.widget.TextView;
 import com.example.akchen.main_ui.Activity.EditPlanActivity;
 import com.example.akchen.main_ui.Activity.PlanScheduleActivity;
 import com.example.akchen.main_ui.Adapter.MyShowAdapter;
+import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
 import com.example.akchen.main_ui.R;
 import com.thinkpage.lib.api.TPAirQuality;
+import com.thinkpage.lib.api.TPCity;
+import com.thinkpage.lib.api.TPListeners;
 import com.thinkpage.lib.api.TPWeatherDaily;
+import com.thinkpage.lib.api.TPWeatherManager;
 import com.thinkpage.lib.api.TPWeatherNow;
 
 import java.text.SimpleDateFormat;
@@ -39,6 +44,7 @@ public class MainUIFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private String location;
     private TPWeatherNow mWeatherNow = null;           //今天的这个城市的天气
     private TPWeatherDaily[] mfutureWeathers = null;  //未来三天的天气 后面会根据这个现实版 长度一定要保证是3
     private TPAirQuality  mAirQuaity = null; //天气质量
@@ -52,7 +58,7 @@ public class MainUIFragment extends Fragment {
     private ImageButton addPlanButton=null;
     private Button calendarButton=null;
     public MainUIFragment() {
-        // Required empty public constructor
+
     }
 
     public void SetWeatherNow(TPWeatherNow m){this.mWeatherNow = m;}
@@ -215,5 +221,6 @@ public class MainUIFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
 }
