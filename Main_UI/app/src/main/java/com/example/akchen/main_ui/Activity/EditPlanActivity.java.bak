@@ -58,8 +58,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.motify:
-                        
-                        //editText.setF       ocusable(true);
+                        //editText.setTextIsSelectable(true);
+                        //editText.setFocusable(true);
                         editText.setEnabled(true);
 
                         break;
