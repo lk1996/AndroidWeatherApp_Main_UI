@@ -39,6 +39,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
 
         setContentView(R.layout.activity_editplan);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         daTextView = (TextView) findViewById(R.id.tv_date);
         endTime=(TextView)findViewById(R.id.endTime);
         daTextView.setOnClickListener(this);
