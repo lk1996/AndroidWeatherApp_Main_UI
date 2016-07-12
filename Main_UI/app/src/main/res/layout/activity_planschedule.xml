@@ -5,6 +5,8 @@
     android:layout_height="match_parent">
 
     <CalendarView
+
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusedMonthDateColor="@color/colorPrimary"
@@ -12,8 +14,13 @@
 
 
     <ListView
+        android:divider="@color/black_more_half"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/planScheduleListView" />
+        android:id="@+id/planScheduleListView"
+        android:listSelector="@color/left_item_color"
+        android:layout_marginLeft="25sp"
+        android:layout_marginRight="25sp"
+        />
 
 </LinearLayout>
