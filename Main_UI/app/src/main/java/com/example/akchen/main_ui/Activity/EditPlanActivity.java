@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.akchen.main_ui.R;
 import com.example.akchen.main_ui.others.utils.Plan;
+import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.example.akchen.main_ui.others.widget.DateTimeSelectorDialogBuilder;
 
 /**
@@ -33,12 +34,14 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     private Button back;
     private String timeStart;
     private String timeEnd;
+    private WeatherDB weatherDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_editplan);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         daTextView = (TextView) findViewById(R.id.tv_date);
         endTime=(TextView)findViewById(R.id.endTime);
         daTextView.setOnClickListener(this);
@@ -48,6 +51,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         editText.setMovementMethod(ScrollingMovementMethod.getInstance());
         editText.setSelection(editText.getText().length(),editText.getText().length());
         editText.getText().append("msg");
+        weatherDB=WeatherDB.getInstance(this);
+
 //        ActionBar actionBar=getActionBar();
 //        actionBar.hide();
         popupMenu=new PopupMenu(this,findViewById(R.id.Menu));

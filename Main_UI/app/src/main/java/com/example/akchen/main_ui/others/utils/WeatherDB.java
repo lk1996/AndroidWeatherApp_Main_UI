@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class WeatherDB {
     public static final String DB_NAME = "Weather_DB";
-    public static final int VERSION = 2;
+    public static final int VERSION = 4;
     private static WeatherDB weatherDB;
     private SQLiteDatabase db;
 
@@ -24,21 +24,21 @@ public class WeatherDB {
         CreateDBAndTable helper = new CreateDBAndTable(context, DB_NAME, null, VERSION);
         db = helper.getWritableDatabase();
     }
-
+//初始化实例
     public synchronized static WeatherDB getInstance(Context context) {
         if (weatherDB == null) {
             weatherDB = new WeatherDB(context);
         }
         return weatherDB;
     }
-
+    //插入出行计划的实例
     public void savePlan(Plan plan)
     {
         if(plan!=null)
         {
             ContentValues values = new ContentValues();
-            values.put("id",plan.getId());
             values.put("plan_name",plan.getPlanName());
+            values.put("user_id",plan.getUserId());
             values.put("plan_content",plan.getPlanContent());
             values.put("time_start",plan.getTimeStart());
             values.put("time_end",plan.getTimeEnd());
@@ -46,15 +46,17 @@ public class WeatherDB {
         }
     }
 
-    public List<Plan> loadPlan()
+    //读取所有出行计划
+    public List<Plan> loadPlan(int userId)
     {
         List<Plan> list=new ArrayList<Plan>();
-        Cursor cursor=db.query("Plan",null,null,null,null,null,null);
+        Cursor cursor=db.query("Plan",null,"userId=?",new String[]{String.valueOf(userId)},null,null,null);
         if (cursor.moveToFirst())
         {
             do {
                 Plan plan = new Plan();
                 plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                plan.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
                 plan.setPlanName(cursor.getString(cursor.getColumnIndex("plan_name")));
                 plan.setPlanContent(cursor.getString(cursor.getColumnIndex("plan_content")));
                 plan.setTimeStart(cursor.getString(cursor.getColumnIndex("time_start")));
@@ -69,6 +71,7 @@ public class WeatherDB {
         return list;
     }
 
+    //用id查询出行计划
     public List<String> queryPlan(int id)
     {
         List<String> list=new ArrayList<String>();
@@ -76,6 +79,7 @@ public class WeatherDB {
         if(cursor.moveToFirst())
         {
             list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("id"))));
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("user_id"))));
             list.add(cursor.getString(cursor.getColumnIndex("plan_name")));
             list.add(cursor.getString(cursor.getColumnIndex("plan_content")));
             list.add(cursor.getString(cursor.getColumnIndex("time_start")));
@@ -87,8 +91,41 @@ public class WeatherDB {
         }
         return list;
     }
-    public void delete(int id)
+    //删除记录
+    public void delete(String table,int id)
     {
-        int result = db.delete("Plan","id=?",new String[]{String.valueOf(id)});
+        int result = db.delete(table,"id=?",new String[]{String.valueOf(id)});
+    }
+
+    //查询每个用户的
+    public List<User> queryUser(String account)
+    {
+        List<User> list=new ArrayList<User>();
+        Cursor cursor = db.query("User",null,"user_account=?",new String[]{account},null,null,null);
+        if(cursor.moveToFirst())
+        {
+            do {
+                User user = new User();
+                user.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                user.setUserAccount(cursor.getString(cursor.getColumnIndex("user_account")));
+                user.setUserCity(cursor.getString(cursor.getColumnIndex("user_city")));
+            }while (cursor.moveToNext());
+        }
+        if(cursor!=null)
+        {
+            cursor.close();
+        }
+        return list;
+    }
+
+    public void saveUser(User user)
+    {
+        if(user!=null)
+        {
+            ContentValues values=new ContentValues();
+            values.put("user_account",user.getUserAccount());
+            values.put("user_city",user.getUserCity());
+            db.insert("User",null,values);
+        }
     }
 }
