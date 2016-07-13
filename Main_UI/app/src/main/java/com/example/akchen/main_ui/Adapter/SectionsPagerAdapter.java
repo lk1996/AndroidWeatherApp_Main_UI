@@ -20,11 +20,7 @@ import java.util.Date;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-//    private static ArrayList<MainUIFragment> fragmentsList = new ArrayList<>();
-//
-//    public static ArrayList<MainUIFragment> getFragmentsList() {
-//        return fragmentsList;
-//    }
+
     private static ArrayList<String> locationList=new ArrayList<>();
 private static  TPWeatherManager weatherManager;
 
@@ -91,9 +87,4 @@ private static  TPWeatherManager weatherManager;
         return locationList.size();
     }
 
-    public static void addFragment(String location)
-    {
-
-
-    }
 }
