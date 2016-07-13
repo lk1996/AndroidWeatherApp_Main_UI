@@ -53,7 +53,7 @@ public class MainUIFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String LOCATION = "location";
 
     private ImageButton addPlanButton = null;
     private Button calendarButton = null;
@@ -93,7 +93,8 @@ public class MainUIFragment extends Fragment {
             return;
         if (mfutureWeathers == null)
             return;
-
+        if (mView == null)
+            return;
         //显示日期
         Date time = mWeatherNow.lastUpdateDate;
 
@@ -199,6 +200,7 @@ public class MainUIFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the planschedulerow for this fragment
         View rt = inflater.inflate(R.layout.fragment_main_ui, container, false);
+
         mView = rt;
         addPlanButton = (ImageButton) rt.findViewById(R.id.id_add_btn);
         addPlanButton.setOnClickListener(new View.OnClickListener() {
@@ -217,14 +219,15 @@ public class MainUIFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+        FreshFragment();
         return rt;
     }
 
     public static MainUIFragment newInstance() {
         MainUIFragment fragment = new MainUIFragment();
-
+//
 //        Bundle args = new Bundle();
-//        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//        args.putString(LOCATION, location);
 //        fragment.setArguments(args);
 //        SectionsPagerAdapter.getFragmentsList().add(SectionsPagerAdapter.getFragmentsList().size(), fragment);
 
