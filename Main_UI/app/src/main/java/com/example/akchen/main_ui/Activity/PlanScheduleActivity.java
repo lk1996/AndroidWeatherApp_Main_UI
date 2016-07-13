@@ -32,7 +32,7 @@ public class PlanScheduleActivity extends Activity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 String[] plans1={ "吃饭","睡觉","学习","运动" };
-                String[] plans2={ "13231","454","5454","464654","16656","156165"};
+                String[] plans2={ "13231","454","5454","464654","16656","156165","156165","156165","156165","156165"};
                 if(year==2016&&month==6&&dayOfMonth==11){
                     ArrayAdapter<String>adapter=new ArrayAdapter<String>(PlanScheduleActivity.this,R.layout.planschedulerow,plans1);
                     ListView listView= (ListView) findViewById(R.id.planScheduleListView);
