@@ -38,8 +38,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     private PopupMenu popupMenu;
     private Menu menu;
     private Button back;
-    private String timeStart="2014年12月10日";
-    private String timeEnd="2016年7月9日";
+    private String timeStart="2014-12-10";
+    private String timeEnd="2016-7-9";
     private WeatherDB weatherDB;
     private TextView title;
     private int CURRENT_LEAVE=0;
@@ -220,7 +220,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
 
                     plan.setTimeStart(timeStart);
                     plan.setTimeEnd(timeEnd);
-                    plan.setPlanName(title.getText().toString());
+                    plan.setPlanName(newPlanName);
                     plan.setPlanContent(editText.getText().toString());
                     plan.setUserId(1);
                     weatherDB.savePlan(plan);
