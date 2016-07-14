@@ -4,7 +4,6 @@ package com.example.akchen.main_ui.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +16,18 @@ import android.widget.TextView;
 import com.example.akchen.main_ui.Activity.EditPlanActivity;
 import com.example.akchen.main_ui.Activity.PlanScheduleActivity;
 import com.example.akchen.main_ui.Adapter.MyShowAdapter;
-import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
 import com.example.akchen.main_ui.R;
+import com.example.akchen.main_ui.others.utils.Plan;
+import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.thinkpage.lib.api.TPAirQuality;
-import com.thinkpage.lib.api.TPCity;
-import com.thinkpage.lib.api.TPListeners;
 import com.thinkpage.lib.api.TPWeatherDaily;
-import com.thinkpage.lib.api.TPWeatherManager;
 import com.thinkpage.lib.api.TPWeatherNow;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -49,7 +47,9 @@ public class MainUIFragment extends Fragment {
     private TPWeatherDaily[] mfutureWeathers = null;  //未来三天的天气 后面会根据这个现实版 长度一定要保证是3
     private TPAirQuality mAirQuaity = null; //天气质量
     private View mView = null;
+    private List<Plan> dataList=new ArrayList<Plan>();
 
+    private WeatherDB weatherDB;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -59,6 +59,7 @@ public class MainUIFragment extends Fragment {
     private Button calendarButton = null;
 
     public MainUIFragment() {
+
 
     }
 
@@ -150,17 +151,17 @@ public class MainUIFragment extends Fragment {
         txtDay3.setText(day3);
         //显示记事内容
         ListView a = (ListView) mView.findViewById(R.id.id_list);
-
+        dataList=weatherDB.loadPlan(1);
         //用于显示那天干嘛 什么时候 String内省 自己构造一个ArrayList就行 然后自己在GetView里加监听器
-        ArrayList<String> list = new ArrayList<String>(20);
-
-        list.add("08:25 AM . 机场接人");
-        list.add("09:00 AM . 上班工作");
-        list.add("12:15 AM . 领导吃饭");
-        list.add("01:36 PM . 去看电影");
-        list.add("03:42 PM . 去洗衣服");
-        list.add("05:17 PM . 记得买米");
-        list.add("06:40 PM . 洗衣服  ");
+        List<String> list = new ArrayList<String>();
+        if(dataList!=null)
+        {
+            list.clear();
+            for(Plan plan:dataList)
+            {
+                list.add(plan.getTimeStart()+"   "+plan.getPlanName());
+            }
+        }
         MyShowAdapter madapter = new MyShowAdapter(this.getActivity(), list);
         a.setAdapter(madapter);
 
@@ -201,12 +202,15 @@ public class MainUIFragment extends Fragment {
         // Inflate the planschedulerow for this fragment
         View rt = inflater.inflate(R.layout.fragment_main_ui, container, false);
 
+        weatherDB=WeatherDB.getInstance(getActivity());
         mView = rt;
         addPlanButton = (ImageButton) rt.findViewById(R.id.id_add_btn);
+       // addPlanButton.setEnabled(false);
         addPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EditPlanActivity.class);
+                intent.putExtra("CURRENT_LEAVE",2);
                 getActivity().startActivity(intent);
 
             }
