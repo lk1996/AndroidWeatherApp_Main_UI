@@ -131,24 +131,6 @@ public class WeatherDB {
         }
     }
 
-<<<<<<< HEAD
-    public List<Plan> queryFromTime(String timeStart,int userId)
-    {
-        List<Plan> list = new ArrayList<Plan>();
-        Cursor cursor = db.query("Plan",null,"user_id=? and time_start=?",new String[]{String.valueOf(userId),timeStart},null,null,null);
-        if(cursor.moveToFirst())
-        {
-            do {
-                Plan plan = new Plan();
-                plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                plan.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
-                plan.setPlanName(cursor.getString(cursor.getColumnIndex("plan_name")));
-                plan.setPlanContent(cursor.getString(cursor.getColumnIndex("plan_content")));
-                plan.setTimeStart(cursor.getString(cursor.getColumnIndex("time_start")));
-                plan.setTimeEnd(cursor.getString(cursor.getColumnIndex("time_end")));
-                list.add(plan);
-            }while (cursor.moveToNext());
-=======
     public List<Plan> queryFromTime(String time,int userId)
     {
         List<Plan> list =new ArrayList<Plan>();
@@ -166,7 +148,6 @@ public class WeatherDB {
                list.add(plan);
            }while (cursor.moveToNext());
 
->>>>>>> pr/7
         }
         if(cursor!=null)
         {
@@ -174,8 +155,7 @@ public class WeatherDB {
         }
         return list;
     }
-<<<<<<< HEAD
-=======
+
     public void update(Plan plan)
     {
         ContentValues values =new ContentValues();
@@ -185,5 +165,4 @@ public class WeatherDB {
         values.put("plan_name",plan.getPlanName());
         db.update("Plan",values,"id=?",new String[]{String.valueOf(plan.getId())});
     }
->>>>>>> pr/7
 }

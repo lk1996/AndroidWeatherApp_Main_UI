@@ -1,12 +1,9 @@
 package com.example.akchen.main_ui.Activity;
 
 import android.app.Activity;
-<<<<<<< HEAD
-=======
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
->>>>>>> pr/7
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -101,11 +98,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.motify:
-<<<<<<< HEAD
 
-                        //editText.setF       ocusable(true);
-=======
->>>>>>> pr/7
                         editText.setEnabled(true);
                         daTextView.setEnabled(true);
                         endTime.setEnabled(true);
