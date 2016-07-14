@@ -12,18 +12,10 @@ import android.widget.Button;
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
 import com.example.akchen.main_ui.R;
 import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
-import com.example.akchen.main_ui.others.utils.Plan;
-import com.example.akchen.main_ui.others.utils.User;
 import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.example.akchen.main_ui.others.widget.LocationSelectorDialogBuilder;
-import com.thinkpage.lib.api.TPCity;
-import com.thinkpage.lib.api.TPListeners;
-import com.thinkpage.lib.api.TPWeatherDaily;
-import com.thinkpage.lib.api.TPWeatherManager;
-import com.thinkpage.lib.api.TPWeatherNow;
-
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class MainUIActivity extends AppCompatActivity implements View.OnClickListener, LocationSelectorDialogBuilder.OnSaveLocationLister {
 
@@ -42,10 +34,16 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().hide();
 
         SectionsPagerAdapter.getLocationList().add("beijing");
+       //..........
+
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionAdapter);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> pr/7
         main_share = (Button) findViewById(R.id.main_share);
         main_add = (Button) findViewById(R.id.main_add);
 
@@ -57,8 +55,8 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onSaveLocation(String location, String provinceId, String cityId) {
 
-
         SectionsPagerAdapter.getLocationList().add("shanghai");
+        //..................
         mSectionAdapter.notifyDataSetChanged();
 
     }

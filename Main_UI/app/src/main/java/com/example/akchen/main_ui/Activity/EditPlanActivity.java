@@ -1,12 +1,16 @@
 package com.example.akchen.main_ui.Activity;
 
 import android.app.Activity;
+<<<<<<< HEAD
+=======
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+>>>>>>> pr/7
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,6 +48,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     private String newPlanName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_editplan);
@@ -51,6 +57,17 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
 
         daTextView = (TextView) findViewById(R.id.tv_date);
         endTime=(TextView)findViewById(R.id.endTime);
+
+/**********        Test   
+        Intent intent =getIntent();
+        Bundle bundle = intent.getExtras();
+        Plan plan=(Plan)bundle.getSerializable("plan");
+        daTextView.setText(plan.getPlanName());
+        endTime.setText(String.valueOf(bundle.getInt("LEVEL_START")));
+
+*****************/
+
+
         daTextView.setOnClickListener(this);
         daTextView.setEnabled(false);
         back=(Button)findViewById(R.id.back);
@@ -84,6 +101,11 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.motify:
+<<<<<<< HEAD
+
+                        //editText.setF       ocusable(true);
+=======
+>>>>>>> pr/7
                         editText.setEnabled(true);
                         daTextView.setEnabled(true);
                         endTime.setEnabled(true);
