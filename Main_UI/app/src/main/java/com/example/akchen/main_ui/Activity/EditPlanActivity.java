@@ -1,6 +1,12 @@
 package com.example.akchen.main_ui.Activity;
 
 import android.app.Activity;
+<<<<<<< HEAD
+=======
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+>>>>>>> pr/7
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -37,6 +43,9 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     private String timeStart;
     private String timeEnd;
     private WeatherDB weatherDB;
+    private TextView title;
+    private int CURRENT_LEAVE=0;
+    private String newPlanName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -60,13 +69,27 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
 
 
         daTextView.setOnClickListener(this);
+        daTextView.setEnabled(false);
         back=(Button)findViewById(R.id.back);
         endTime.setOnClickListener(this);
+        endTime.setEnabled(false);
         editText=(EditText)findViewById(R.id.edit_text);
+        title=(TextView)findViewById(R.id.Title);
         editText.setMovementMethod(ScrollingMovementMethod.getInstance());
         editText.setSelection(editText.getText().length(),editText.getText().length());
-        editText.getText().append("msg");
         weatherDB=WeatherDB.getInstance(this);
+        final Intent intent = getIntent();
+        final Plan intentPlan = (Plan)intent.getSerializableExtra("plan");
+        CURRENT_LEAVE =intent.getIntExtra("CURRENT_LEAVE",2);
+        if(CURRENT_LEAVE==LEAVE_START)
+        {
+            editText.setText(intentPlan.getPlanContent());
+            title.setText(intentPlan.getPlanName());
+        }
+        else if(CURRENT_LEAVE==LEAVE_END)
+        {
+            title.setText("New Plan");
+        }
 
 //        ActionBar actionBar=getActionBar();
 //        actionBar.hide();
@@ -78,22 +101,55 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.motify:
+<<<<<<< HEAD
 
                         //editText.setF       ocusable(true);
+=======
+>>>>>>> pr/7
                         editText.setEnabled(true);
-
+                        daTextView.setEnabled(true);
+                        endTime.setEnabled(true);
                         break;
                     case R.id.save:
                         Toast.makeText(EditPlanActivity.this, "保存",
                                 Toast.LENGTH_LONG).show();
                         Plan plan=new Plan();
+
                         plan.setTimeStart(timeStart);
                         plan.setTimeEnd(timeEnd);
-
-
+                        plan.setId(intentPlan.getId());
+                        plan.setUserId(intentPlan.getUserId());
+                        plan.setPlanName(title.getText().toString());
+                        plan.setPlanContent(editText.getText().toString());
+                        if(CURRENT_LEAVE==LEAVE_START)
+                        {
+                            weatherDB.update(plan);
+                            Intent intent1 = new Intent(EditPlanActivity.this,MainUIActivity.class);
+                            startActivity(intent1);
+                        }
+                        else if(CURRENT_LEAVE==LEAVE_END)
+                        {
+                            showDialog();
+                            if(!"".equals(newPlanName)&&newPlanName!=null)
+                            {
+                                plan.setPlanName(newPlanName);
+                                weatherDB.savePlan(plan);
+                                Intent intent1 = new Intent(EditPlanActivity.this,MainUIActivity.class);
+                                startActivity(intent1);
+                            }
+                        }
                         break;
                     case R.id.delete:
                         Toast.makeText(EditPlanActivity.this,"删除",Toast.LENGTH_SHORT).show();
+                        if(CURRENT_LEAVE==LEAVE_START)
+                        {
+                            weatherDB.delete("Plan",intentPlan.getId());
+                        }
+                        else if(CURRENT_LEAVE==LEAVE_END)
+                        {
+                            Intent intent1=new Intent(EditPlanActivity.this,MainUIActivity.class);
+                            startActivity(intent1);
+                        }
                         break;
                     default:
                         break;
@@ -156,5 +212,22 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         }
 
     }
-
+    public void showDialog()
+    {
+        final Context context=this;
+        final EditText userName=new EditText(this);
+        new AlertDialog.Builder(context)
+                .setTitle("请输入新的计划名：")
+                .setView(userName)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context,"UserName:"+userName.getText().toString(),Toast.LENGTH_SHORT).show();
+                        newPlanName=userName.getText().toString();
+                    }
+                })
+                .setNegativeButton("取消",null)
+                .show();
+    }
 }
+
