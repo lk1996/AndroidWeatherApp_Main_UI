@@ -63,14 +63,6 @@ public class MainUIFragment extends Fragment {
 
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public void SetWeatherNow(TPWeatherNow m) {
         this.mWeatherNow = m;
     }
@@ -172,9 +164,7 @@ public class MainUIFragment extends Fragment {
         }
         MyShowAdapter madapter = new MyShowAdapter(this.getActivity(), list);
         a.setAdapter(madapter);
-     weatherIconView.setFocusable(true);
-        weatherIconView.setFocusableInTouchMode(true);
-        weatherIconView.requestFocus();
+
 
     }
 

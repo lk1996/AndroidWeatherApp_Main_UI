@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 
 import com.example.akchen.main_ui.others.CreateDBAndTable;
-import com.example.akchen.main_ui.others.wheelview.StrericWheelAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,8 +78,8 @@ public class WeatherDB {
         Cursor cursor=db.query("Plan",null,"id=?",new String[]{String.valueOf(id)},null,null,null);
         if(cursor.moveToFirst())
         {
-            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("id"))));//0
-            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("user_id"))));//1
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("id"))));
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("user_id"))));
             list.add(cursor.getString(cursor.getColumnIndex("plan_name")));
             list.add(cursor.getString(cursor.getColumnIndex("plan_content")));
             list.add(cursor.getString(cursor.getColumnIndex("time_start")));
@@ -131,24 +130,6 @@ public class WeatherDB {
         }
     }
 
-<<<<<<< HEAD
-    public List<Plan> queryFromTime(String timeStart,int userId)
-    {
-        List<Plan> list = new ArrayList<Plan>();
-        Cursor cursor = db.query("Plan",null,"user_id=? and time_start=?",new String[]{String.valueOf(userId),timeStart},null,null,null);
-        if(cursor.moveToFirst())
-        {
-            do {
-                Plan plan = new Plan();
-                plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                plan.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
-                plan.setPlanName(cursor.getString(cursor.getColumnIndex("plan_name")));
-                plan.setPlanContent(cursor.getString(cursor.getColumnIndex("plan_content")));
-                plan.setTimeStart(cursor.getString(cursor.getColumnIndex("time_start")));
-                plan.setTimeEnd(cursor.getString(cursor.getColumnIndex("time_end")));
-                list.add(plan);
-            }while (cursor.moveToNext());
-=======
     public List<Plan> queryFromTime(String time,int userId)
     {
         List<Plan> list =new ArrayList<Plan>();
@@ -166,7 +147,6 @@ public class WeatherDB {
                list.add(plan);
            }while (cursor.moveToNext());
 
->>>>>>> pr/7
         }
         if(cursor!=null)
         {
@@ -174,8 +154,6 @@ public class WeatherDB {
         }
         return list;
     }
-<<<<<<< HEAD
-=======
     public void update(Plan plan)
     {
         ContentValues values =new ContentValues();
@@ -185,5 +163,4 @@ public class WeatherDB {
         values.put("plan_name",plan.getPlanName());
         db.update("Plan",values,"id=?",new String[]{String.valueOf(plan.getId())});
     }
->>>>>>> pr/7
 }
