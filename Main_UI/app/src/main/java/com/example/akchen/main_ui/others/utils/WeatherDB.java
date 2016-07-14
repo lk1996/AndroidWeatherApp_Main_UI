@@ -51,7 +51,7 @@ public class WeatherDB {
     public List<Plan> loadPlan(int userId)
     {
         List<Plan> list=new ArrayList<Plan>();
-        Cursor cursor=db.query("Plan",null,"userId=?",new String[]{String.valueOf(userId)},null,null,null);
+        Cursor cursor=db.query("Plan",null,"user_id=?",new String[]{String.valueOf(userId)},null,null,null);
         if (cursor.moveToFirst())
         {
             do {

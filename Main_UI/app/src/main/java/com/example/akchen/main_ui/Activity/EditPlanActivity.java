@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,8 +38,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     private PopupMenu popupMenu;
     private Menu menu;
     private Button back;
-    private String timeStart;
-    private String timeEnd;
+    private String timeStart="2014年12月10日";
+    private String timeEnd="2016年7月9日";
     private WeatherDB weatherDB;
     private TextView title;
     private int CURRENT_LEAVE=0;
@@ -110,12 +111,13 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
 
                         plan.setTimeStart(timeStart);
                         plan.setTimeEnd(timeEnd);
-                        plan.setId(intentPlan.getId());
-                        plan.setUserId(intentPlan.getUserId());
                         plan.setPlanName(title.getText().toString());
                         plan.setPlanContent(editText.getText().toString());
                         if(CURRENT_LEAVE==LEAVE_START)
                         {
+
+                            plan.setId(intentPlan.getId());
+                            plan.setUserId(intentPlan.getUserId());
                             weatherDB.update(plan);
                             Intent intent1 = new Intent(EditPlanActivity.this,MainUIActivity.class);
                             startActivity(intent1);
@@ -125,6 +127,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
                             showDialog();
                             if(!"".equals(newPlanName)&&newPlanName!=null)
                             {
+                                plan.setUserId(1);
                                 plan.setPlanName(newPlanName);
                                 weatherDB.savePlan(plan);
                                 Intent intent1 = new Intent(EditPlanActivity.this,MainUIActivity.class);
@@ -207,20 +210,25 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     }
     public void showDialog()
     {
-        final Context context=this;
-        final EditText userName=new EditText(this);
-        new AlertDialog.Builder(context)
-                .setTitle("请输入新的计划名：")
-                .setView(userName)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(context,"UserName:"+userName.getText().toString(),Toast.LENGTH_SHORT).show();
-                        newPlanName=userName.getText().toString();
-                    }
-                })
-                .setNegativeButton("取消",null)
-                .show();
+        AlertDialog.Builder builder=new AlertDialog.Builder(EditPlanActivity.this);
+        LayoutInflater factory=getLayoutInflater();
+        final View textEntryView =factory.inflate(R.layout.dialog,null);
+        builder.setTitle("请输入计划名:");
+        builder.setView(textEntryView);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                EditText planName=(EditText)textEntryView.findViewById(R.id.planName);
+                newPlanName=planName.getText().toString();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.create().show();
     }
 }
 
