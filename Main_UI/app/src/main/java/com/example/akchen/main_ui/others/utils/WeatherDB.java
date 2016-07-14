@@ -154,6 +154,10 @@ public class WeatherDB {
         }
         return list;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> pr/4
     public void update(Plan plan)
     {
         ContentValues values =new ContentValues();

@@ -84,6 +84,10 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.motify:
+<<<<<<< HEAD
+=======
+
+>>>>>>> pr/4
                         editText.setEnabled(true);
                         daTextView.setEnabled(true);
                         endTime.setEnabled(true);

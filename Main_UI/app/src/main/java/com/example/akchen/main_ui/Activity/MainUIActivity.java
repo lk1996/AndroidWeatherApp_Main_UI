@@ -46,6 +46,10 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionAdapter);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> pr/4
         main_share = (Button) findViewById(R.id.main_share);
         main_add = (Button) findViewById(R.id.main_add);
 
