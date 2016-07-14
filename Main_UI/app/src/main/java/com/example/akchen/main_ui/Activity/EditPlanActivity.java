@@ -1,8 +1,10 @@
 package com.example.akchen.main_ui.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +39,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
     private WeatherDB weatherDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_editplan);
@@ -44,6 +48,17 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
 
         daTextView = (TextView) findViewById(R.id.tv_date);
         endTime=(TextView)findViewById(R.id.endTime);
+
+/**********        Test   
+        Intent intent =getIntent();
+        Bundle bundle = intent.getExtras();
+        Plan plan=(Plan)bundle.getSerializable("plan");
+        daTextView.setText(plan.getPlanName());
+        endTime.setText(String.valueOf(bundle.getInt("LEVEL_START")));
+
+*****************/
+
+
         daTextView.setOnClickListener(this);
         back=(Button)findViewById(R.id.back);
         endTime.setOnClickListener(this);
@@ -63,7 +78,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.motify:
-                        
+
                         //editText.setF       ocusable(true);
                         editText.setEnabled(true);
 

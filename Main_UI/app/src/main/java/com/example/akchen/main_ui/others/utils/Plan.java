@@ -1,8 +1,11 @@
 package com.example.akchen.main_ui.others.utils;
+
+import java.io.Serializable;
+
 /**
  * Created by alan on 2016/7/10.
  */
-public class Plan {
+public class Plan implements Serializable {
 
     private int id;
     private String planName;
