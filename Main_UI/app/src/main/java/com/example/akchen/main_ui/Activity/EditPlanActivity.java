@@ -125,14 +125,8 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
                         else if(CURRENT_LEAVE==LEAVE_END)
                         {
                             showDialog();
-                            if(!"".equals(newPlanName)&&newPlanName!=null)
-                            {
-                                plan.setUserId(1);
-                                plan.setPlanName(newPlanName);
-                                weatherDB.savePlan(plan);
-                                Intent intent1 = new Intent(EditPlanActivity.this,MainUIActivity.class);
-                                startActivity(intent1);
-                            }
+                            //Log.d("EditPlanActivity",newPlanName+"------");
+
                         }
                         break;
                     case R.id.delete:
@@ -220,6 +214,19 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
             public void onClick(DialogInterface dialogInterface, int i) {
                 EditText planName=(EditText)textEntryView.findViewById(R.id.planName);
                 newPlanName=planName.getText().toString();
+                if(!"".equals(newPlanName)&&newPlanName!=null)
+                {
+                    Plan plan =new Plan();
+
+                    plan.setTimeStart(timeStart);
+                    plan.setTimeEnd(timeEnd);
+                    plan.setPlanName(title.getText().toString());
+                    plan.setPlanContent(editText.getText().toString());
+                    plan.setUserId(1);
+                    weatherDB.savePlan(plan);
+                    Intent intent1 = new Intent(EditPlanActivity.this,MainUIActivity.class);
+                    startActivity(intent1);
+                }
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
