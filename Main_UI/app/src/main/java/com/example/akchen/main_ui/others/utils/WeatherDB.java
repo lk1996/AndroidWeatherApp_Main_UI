@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 
 import com.example.akchen.main_ui.others.CreateDBAndTable;
+import com.example.akchen.main_ui.others.wheelview.StrericWheelAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +79,8 @@ public class WeatherDB {
         Cursor cursor=db.query("Plan",null,"id=?",new String[]{String.valueOf(id)},null,null,null);
         if(cursor.moveToFirst())
         {
-            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("id"))));
-            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("user_id"))));
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("id"))));//0
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("user_id"))));//1
             list.add(cursor.getString(cursor.getColumnIndex("plan_name")));
             list.add(cursor.getString(cursor.getColumnIndex("plan_content")));
             list.add(cursor.getString(cursor.getColumnIndex("time_start")));
@@ -109,6 +110,7 @@ public class WeatherDB {
                 user.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 user.setUserAccount(cursor.getString(cursor.getColumnIndex("user_account")));
                 user.setUserCity(cursor.getString(cursor.getColumnIndex("user_city")));
+                list.add(user);
             }while (cursor.moveToNext());
         }
         if(cursor!=null)
@@ -127,5 +129,29 @@ public class WeatherDB {
             values.put("user_city",user.getUserCity());
             db.insert("User",null,values);
         }
+    }
+
+    public List<Plan> queryFromTime(String timeStart,int userId)
+    {
+        List<Plan> list = new ArrayList<Plan>();
+        Cursor cursor = db.query("Plan",null,"user_id=? and time_start=?",new String[]{String.valueOf(userId),timeStart},null,null,null);
+        if(cursor.moveToFirst())
+        {
+            do {
+                Plan plan = new Plan();
+                plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                plan.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
+                plan.setPlanName(cursor.getString(cursor.getColumnIndex("plan_name")));
+                plan.setPlanContent(cursor.getString(cursor.getColumnIndex("plan_content")));
+                plan.setTimeStart(cursor.getString(cursor.getColumnIndex("time_start")));
+                plan.setTimeEnd(cursor.getString(cursor.getColumnIndex("time_end")));
+                list.add(plan);
+            }while (cursor.moveToNext());
+        }
+        if(cursor!=null)
+        {
+            cursor.close();
+        }
+        return list;
     }
 }
