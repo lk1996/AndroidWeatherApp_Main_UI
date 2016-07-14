@@ -12,102 +12,33 @@ import android.widget.Button;
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
 import com.example.akchen.main_ui.R;
 import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
-import com.example.akchen.main_ui.others.utils.Plan;
-import com.example.akchen.main_ui.others.utils.User;
 import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.example.akchen.main_ui.others.widget.LocationSelectorDialogBuilder;
-import com.thinkpage.lib.api.TPCity;
-import com.thinkpage.lib.api.TPListeners;
-import com.thinkpage.lib.api.TPWeatherDaily;
-import com.thinkpage.lib.api.TPWeatherManager;
-import com.thinkpage.lib.api.TPWeatherNow;
-
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class MainUIActivity extends AppCompatActivity implements View.OnClickListener, LocationSelectorDialogBuilder.OnSaveLocationLister {
 
-    private SectionsPagerAdapter mSectionAdapter = null;
-    private ViewPager mViewPager;
+    private static SectionsPagerAdapter mSectionAdapter = null;
+    private static ViewPager mViewPager;
     private WeatherDB weatherDB;
     private Button main_add = null;
     private Button main_share = null;
     private LocationSelectorDialogBuilder locationBuilder;
-    private TPWeatherManager weatherManager;
-    private   static ArrayList<MainUIFragment> fragmentsList;
+//    private TPWeatherManager weatherManager;
+    private  static ArrayList<MainUIFragment> fragmentsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ui);
         getSupportActionBar().hide();
 
-        fragmentsList=SectionsPagerAdapter.getFragmentsList();
-        final MainUIFragment mainFragment = MainUIFragment.newInstance();
-        SectionsPagerAdapter.getFragmentsList().add(fragmentsList.size(), mainFragment);
+        SectionsPagerAdapter.getLocationList().add("beijing");
+       //..........
 
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionAdapter);
-        getSupportActionBar().hide();
-//
-//<<<<<<< HEAD
-//
-//       weatherDB=WeatherDB.getInstance(this);
-//        User user = new User();
-//        Plan plan = new Plan();
-//        user.setUserAccount("ALAN");
-//        user.setUserCity("曲靖");
-//        weatherDB.saveUser(user);
-//        plan.setUserId(1);
-//        plan.setPlanName("LZW");
-//        plan.setPlanContent("LOVE");
-//        plan.setTimeStart("2008年9月1日");
-//        plan.setTimeEnd("2014年6月8日");
-//        weatherDB.savePlan(plan);
-//=======
-
-
-
-//>>>>>>> master
-        //获取北京的天气
-        weatherManager = TPWeatherManager.sharedWeatherManager();
-        //使用心知天气官网获取的key和用户id初始化WeatherManager
-        weatherManager.initWithKeyAndUserId("voxdfkclylzg3hjf", "U3D4EAF09E");
-
-        // 获取北京当前天气，使用简体中文、摄氏度
-        weatherManager.getWeatherNow(new TPCity("beijing")
-                , TPWeatherManager.TPWeatherReportLanguage.kSimplifiedChinese
-                , TPWeatherManager.TPTemperatureUnit.kCelsius
-                , new TPListeners.TPWeatherNowListener() {
-                    @Override
-                    public void onTPWeatherNowAvailable(TPWeatherNow weatherNow, String errorInfo) {
-                        if (weatherNow != null) {
-                            //weatherNow 就是返回的当前天气信息
-                            mainFragment.SetWeatherNow(weatherNow);
-                            mainFragment.FreshFragment();
-                        } else {
-
-                        }
-                    }
-                });
-        //未来3天
-        weatherManager.getWeatherDailyArray(new TPCity("beijing"),
-                TPWeatherManager.TPWeatherReportLanguage.kSimplifiedChinese,
-                TPWeatherManager.TPTemperatureUnit.kCelsius,
-                new Date(),
-                3,
-                new TPListeners.TPWeatherDailyListener() {
-                    @Override
-                    public void onTPWeatherDailyAvailable(TPWeatherDaily[] tpWeatherDailies, String s) {
-                        if (tpWeatherDailies != null) {
-                            //weatherNow 就是返回的当前天气信息
-                            mainFragment.SetFutureWeather(tpWeatherDailies);
-                            mainFragment.FreshFragment();
-                        }
-                    }
-                }
-
-        );
 
 
         main_share = (Button) findViewById(R.id.main_share);
@@ -121,46 +52,9 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onSaveLocation(String location, String provinceId, String cityId) {
 
-        location = "shanghai";
-
-        final MainUIFragment newFragment = new MainUIFragment();
-        // 获取北京当前天气，使用简体中文、摄氏度
-        weatherManager.getWeatherNow(new TPCity(location)
-                , TPWeatherManager.TPWeatherReportLanguage.kSimplifiedChinese
-                , TPWeatherManager.TPTemperatureUnit.kCelsius
-                , new TPListeners.TPWeatherNowListener() {
-                    @Override
-                    public void onTPWeatherNowAvailable(TPWeatherNow weatherNow, String errorInfo) {
-                        if (weatherNow != null) {
-                            //weatherNow 就是返回的当前天气信息
-                            newFragment.SetWeatherNow(weatherNow);
-                            newFragment.FreshFragment();
-                        } else {
-
-                        }
-                    }
-                });
-        //未来3天
-        weatherManager.getWeatherDailyArray(new TPCity(location),
-                TPWeatherManager.TPWeatherReportLanguage.kSimplifiedChinese,
-                TPWeatherManager.TPTemperatureUnit.kCelsius,
-                new Date(),
-                3,
-                new TPListeners.TPWeatherDailyListener() {
-                    @Override
-                    public void onTPWeatherDailyAvailable(TPWeatherDaily[] tpWeatherDailies, String s) {
-                        if (tpWeatherDailies != null) {
-                            //weatherNow 就是返回的当前天气信息
-                            newFragment.SetFutureWeather(tpWeatherDailies);
-                            newFragment.FreshFragment();
-                        }
-                    }
-                }
-
-        );
-
-//        SectionsPagerAdapter.getFragmentsList().add(newFragment);
-
+        SectionsPagerAdapter.getLocationList().add("shanghai");
+        //..................
+        mSectionAdapter.notifyDataSetChanged();
 
     }
 
