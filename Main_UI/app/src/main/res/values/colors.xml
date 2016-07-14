@@ -30,7 +30,7 @@
     <!-- 浅蓝色字体颜色 -->
     <color name="light_blue">#E5F2FD</color>
     <!-- 默认背景颜色，灰白 -->
-    <color name="base_bg">#FBFBFB</color>
+    <color name="base_bg">#fbfbfb</color>
     <!-- 首页上方边框的颜色，深灰 -->
     <color name="home_border_dark_gray">#E1E1E1</color>
     <!-- 首页上方三个环形进度条布局的背景颜色，浅灰 -->
@@ -43,7 +43,7 @@
     <color name="home_round_progress_bar_blue">#ff3896F3</color>
     <!-- 首页上方环形进度条的默认颜色，灰色 -->
     <color name="home_round_progress_bar_default_gray">#D1D1D1</color>
-    <color name="dialog_pressed_bg_color">#919191</color>
+    <color name="dialog_pressed_bg_color">#cfcece</color>
     <!-- dialog条目默认的显示的背景 -->
     <color name="dialog_unpressed_bg_color">#FFFFFF</color>
     <!-- dialog背景半透明 -->
