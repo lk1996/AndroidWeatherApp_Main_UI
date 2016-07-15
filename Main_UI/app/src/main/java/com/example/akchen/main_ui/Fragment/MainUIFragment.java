@@ -159,6 +159,8 @@ public class MainUIFragment extends Fragment {
         txtDay3.setText(day3);
         //显示记事内容
         ListView a = (ListView) mView.findViewById(R.id.id_list);
+//        a.setScrollbarFadingEnabled(true);
+
         dataList=weatherDB.loadPlan(1);
         //用于显示那天干嘛 什么时候 String内省 自己构造一个ArrayList就行 然后自己在GetView里加监听器
         List<String> list = new ArrayList<String>();
