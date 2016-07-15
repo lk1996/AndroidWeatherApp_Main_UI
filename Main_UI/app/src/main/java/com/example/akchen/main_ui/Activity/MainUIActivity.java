@@ -14,6 +14,7 @@ import com.example.akchen.main_ui.R;
 import com.example.akchen.main_ui.Adapter.SectionsPagerAdapter;
 import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.example.akchen.main_ui.others.widget.LocationSelectorDialogBuilder;
+
 import java.util.ArrayList;
 
 
@@ -25,8 +26,7 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
     private Button main_add = null;
     private Button main_share = null;
     private LocationSelectorDialogBuilder locationBuilder;
-//    private TPWeatherManager weatherManager;
-    private  static ArrayList<MainUIFragment> fragmentsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().hide();
 
         SectionsPagerAdapter.getLocationList().add("beijing");
-       //..........
+        //..........
 
         mSectionAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -53,7 +53,6 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
     public void onSaveLocation(String location, String provinceId, String cityId) {
 
         SectionsPagerAdapter.getLocationList().add("shanghai");
-        //..................
         mSectionAdapter.notifyDataSetChanged();
 
     }
