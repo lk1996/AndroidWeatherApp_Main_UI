@@ -62,9 +62,17 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         editText.setMovementMethod(ScrollingMovementMethod.getInstance());
         editText.setSelection(editText.getText().length(), editText.getText().length());
         weatherDB = WeatherDB.getInstance(this);
+      /*
+        Intent intent =getIntent();
+        Bundle bundle = intent.getExtras();
+        Plan plan=(Plan)bundle.getSerializable("plan");
+        daTextView.setText(plan.getPlanName());
+        endTime.setText(String.valueOf(bundle.getInt("LEVEL_START")));
+        */
         final Intent intent = getIntent();
-        final Plan intentPlan = (Plan) intent.getSerializableExtra("plan");
-        CURRENT_LEAVE = intent.getIntExtra("CURRENT_LEAVE", 2);
+        Bundle bundle= intent.getExtras();
+        final Plan intentPlan = (Plan) bundle.getSerializable("plan");
+        CURRENT_LEAVE = bundle.getInt("CURRENT_LEAVE");
         if (CURRENT_LEAVE == LEAVE_START) {
             editText.setText(intentPlan.getPlanContent());
             title.setText(intentPlan.getPlanName());

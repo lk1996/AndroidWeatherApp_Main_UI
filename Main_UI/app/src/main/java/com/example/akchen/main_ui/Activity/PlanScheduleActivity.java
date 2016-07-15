@@ -40,13 +40,13 @@ public class PlanScheduleActivity extends Activity {
         String year =String.valueOf(t.year) ;
         String month="01";
         String date="01";
-        if(t.month<10){
+        if(t.month<9){
             month="0"+String.valueOf(t.month+1);
         }else {
             month=String.valueOf(t.month+1);
         }
 
-        if(t.monthDay<10){
+        if(t.monthDay<9){
             date="0"+ String.valueOf(t.monthDay);
         }else{
             date=String.valueOf(t.monthDay);
@@ -76,13 +76,13 @@ public class PlanScheduleActivity extends Activity {
                 String y =String.valueOf(year) ;
                 String m="01";
                 String d="01";
-                if(month<10){
+                if(month<9){
                     m="0"+String.valueOf(month+1);
                 }else {
                     m=String.valueOf(month+1);
                 }
 
-                if(dayOfMonth<10){
+                if(dayOfMonth<9){
                     d="0"+ String.valueOf(dayOfMonth);
                 }else{
                     d=String.valueOf(dayOfMonth);
@@ -115,7 +115,7 @@ public class PlanScheduleActivity extends Activity {
                 Plan plan=weatherDB.queryFromTime(time,1).get(i);
                 Bundle data=new Bundle();
                 data.putSerializable("plan",plan);
-                data.putInt("LEVEL_START",1);
+                data.putInt("CURRENT_LEAVE",1);
                 Intent intent =new Intent(PlanScheduleActivity.this,EditPlanActivity.class);
                 intent.putExtras(data);
                 startActivity(intent);
