@@ -3,15 +3,28 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+=======
+        <option name="gradleHome" value="C:\Users\alan\Desktop\庄雄江\android-studio\gradle\gradle-2.10" />
+>>>>>>> pr/9
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
+<<<<<<< HEAD
         <option name="resolveModulePerSourceSet" value="false" />
+=======
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+>>>>>>> pr/9
       </GradleProjectSettings>
     </option>
   </component>

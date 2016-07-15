@@ -54,7 +54,12 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         endTime = (TextView) findViewById(R.id.endTime);
         daTextView.setOnClickListener(this);
         daTextView.setEnabled(false);
+<<<<<<< HEAD
         back = (Button) findViewById(R.id.back);
+=======
+        back=(Button)findViewById(R.id.back);
+        back.setOnClickListener(this);
+>>>>>>> pr/9
         endTime.setOnClickListener(this);
         endTime.setEnabled(false);
         editText = (EditText) findViewById(R.id.edit_text);
@@ -68,7 +73,16 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         if (CURRENT_LEAVE == LEAVE_START) {
             editText.setText(intentPlan.getPlanContent());
             title.setText(intentPlan.getPlanName());
+<<<<<<< HEAD
         } else if (CURRENT_LEAVE == LEAVE_END) {
+=======
+            daTextView.setText(intentPlan.getTimeStart());
+            endTime.setText(intentPlan.getTimeEnd());
+
+        }
+        else if(CURRENT_LEAVE==LEAVE_END)
+        {
+>>>>>>> pr/9
             title.setText("New Plan");
         }
 
@@ -123,6 +137,7 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
                 return false;
             }
         });
+
     }
 
     public void popupmenu(View v) {
@@ -151,6 +166,12 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
                     dialogBuilder.show();
                     break;
                 }
+            case R.id.back:
+                Intent intent = new Intent(EditPlanActivity.this,MainUIActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
 
 
         }
