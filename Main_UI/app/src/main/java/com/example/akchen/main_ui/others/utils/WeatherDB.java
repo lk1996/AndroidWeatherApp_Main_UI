@@ -51,7 +51,7 @@ public class WeatherDB {
     public List<Plan> loadPlan(int userId)
     {
         List<Plan> list=new ArrayList<Plan>();
-        Cursor cursor=db.query("Plan",null,"user_id=?",new String[]{String.valueOf(userId)},null,null,null);
+        Cursor cursor=db.query("Plan",null,"userId=?",new String[]{String.valueOf(userId)},null,null,null);
         if (cursor.moveToFirst())
         {
             do {
@@ -131,38 +131,27 @@ public class WeatherDB {
         }
     }
 
-    public List<Plan> queryFromTime(String time,int userId)
+    public List<Plan> queryFromTime(String timeStart,int userId)
     {
-        List<Plan> list =new ArrayList<Plan>();
-        Cursor cursor = db.query("Plan",null,"time_start=? and user_id=?",new String[]{time,String.valueOf(userId)},null,null,null);
+        List<Plan> list = new ArrayList<Plan>();
+        Cursor cursor = db.query("Plan",null,"user_id=? and time_start=?",new String[]{String.valueOf(userId),timeStart},null,null,null);
         if(cursor.moveToFirst())
         {
-           do {
-               Plan plan=new Plan();
-               plan.setPlanContent(cursor.getString(cursor.getColumnIndex("plan_content")));
-               plan.setTimeEnd(cursor.getString(cursor.getColumnIndex("time_end")));
-               plan.setTimeStart(cursor.getString(cursor.getColumnIndex("time_start")));
-               plan.setPlanName(cursor.getString(cursor.getColumnIndex("plan_name")));
-               plan.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
-               plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
-               list.add(plan);
-           }while (cursor.moveToNext());
-
+            do {
+                Plan plan = new Plan();
+                plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                plan.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
+                plan.setPlanName(cursor.getString(cursor.getColumnIndex("plan_name")));
+                plan.setPlanContent(cursor.getString(cursor.getColumnIndex("plan_content")));
+                plan.setTimeStart(cursor.getString(cursor.getColumnIndex("time_start")));
+                plan.setTimeEnd(cursor.getString(cursor.getColumnIndex("time_end")));
+                list.add(plan);
+            }while (cursor.moveToNext());
         }
         if(cursor!=null)
         {
             cursor.close();
         }
         return list;
-    }
-
-    public void update(Plan plan)
-    {
-        ContentValues values =new ContentValues();
-        values.put("time_start",plan.getTimeStart());
-        values.put("time_end",plan.getTimeEnd());
-        values.put("plan_content",plan.getPlanContent());
-        values.put("plan_name",plan.getPlanName());
-        db.update("Plan",values,"id=?",new String[]{String.valueOf(plan.getId())});
     }
 }

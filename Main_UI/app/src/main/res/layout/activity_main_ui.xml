@@ -25,6 +25,7 @@
             android:id="@+id/main_add"
             android:layout_gravity="center"
             android:layout_margin="5dip"
+
             android:textColor="#fff"
             android:text="add  "
             android:layout_weight="1"
