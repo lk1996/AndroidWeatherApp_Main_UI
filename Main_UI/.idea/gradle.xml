@@ -6,9 +6,13 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <option name="gradleHome" value="C:\Users\alan\Desktop\庄雄江\android-studio\gradle\gradle-2.10" />
 >>>>>>> pr/9
+=======
+        <option name="gradleHome" value="D:\Program Files\Android studio\gradle\gradle-2.10" />
+>>>>>>> pr/10
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -16,15 +20,21 @@
           </set>
         </option>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option name="resolveModulePerSourceSet" value="false" />
 =======
+=======
+>>>>>>> pr/10
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
+<<<<<<< HEAD
 >>>>>>> pr/9
+=======
+>>>>>>> pr/10
       </GradleProjectSettings>
     </option>
   </component>
