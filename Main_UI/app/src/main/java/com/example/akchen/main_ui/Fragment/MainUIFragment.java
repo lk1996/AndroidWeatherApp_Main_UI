@@ -52,13 +52,10 @@ public class MainUIFragment extends Fragment {
     private TPWeatherDaily[] mfutureWeathers = null;  //未来三天的天气 后面会根据这个现实版 长度一定要保证是3
     private TPAirQuality mAirQuaity = null; //天气质量
     private View mView = null;
-<<<<<<< HEAD
     private List<Plan> dataList=new ArrayList<Plan>();
     private SwipeRefreshLayout fresher = MainUIActivity.getFresher();  //刷新控件
-=======
     private List<Plan> planList;
     private Plan selectedPlan;
->>>>>>> pr/9
 
     private WeatherDB weatherDB;
     // TODO: Rename and change types of parameters
@@ -169,15 +166,14 @@ public class MainUIFragment extends Fragment {
         txtDay2.setText(day2);
         txtDay3.setText(day3);
         //显示记事内容
-<<<<<<< HEAD
-        ListView a = (ListView) mView.findViewById(R.id.id_list);
-//        a.setScrollbarFadingEnabled(true);
-
-        dataList=weatherDB.loadPlan(1);
-=======
+//<<<<<<< HEAD
+//        ListView a = (ListView) mView.findViewById(R.id.id_list);
+////        a.setScrollbarFadingEnabled(true);
+//
+//        dataList=weatherDB.loadPlan(1);
+//=======
         ListView listView = (ListView) mView.findViewById(R.id.id_list);
         planList=weatherDB.loadPlan(1);
->>>>>>> pr/9
         //用于显示那天干嘛 什么时候 String内省 自己构造一个ArrayList就行 然后自己在GetView里加监听器
         List<String> list = new ArrayList<String>();
         if(planList!=null)
