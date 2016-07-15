@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -47,7 +48,8 @@ public class MainUIFragment extends Fragment {
     private TPWeatherDaily[] mfutureWeathers = null;  //未来三天的天气 后面会根据这个现实版 长度一定要保证是3
     private TPAirQuality mAirQuaity = null; //天气质量
     private View mView = null;
-    private List<Plan> dataList=new ArrayList<Plan>();
+    private List<Plan> planList;
+    private Plan selectedPlan;
 
     private WeatherDB weatherDB;
     // TODO: Rename and change types of parameters
@@ -158,20 +160,32 @@ public class MainUIFragment extends Fragment {
         txtDay2.setText(day2);
         txtDay3.setText(day3);
         //显示记事内容
-        ListView a = (ListView) mView.findViewById(R.id.id_list);
-        dataList=weatherDB.loadPlan(1);
+        ListView listView = (ListView) mView.findViewById(R.id.id_list);
+        planList=weatherDB.loadPlan(1);
         //用于显示那天干嘛 什么时候 String内省 自己构造一个ArrayList就行 然后自己在GetView里加监听器
         List<String> list = new ArrayList<String>();
-        if(dataList!=null)
+        if(planList!=null)
         {
             list.clear();
-            for(Plan plan:dataList)
+            for(Plan plan:planList)
             {
                 list.add(plan.getTimeStart()+"   "+plan.getPlanName());
             }
         }
         MyShowAdapter madapter = new MyShowAdapter(this.getActivity(), list);
-        a.setAdapter(madapter);
+        listView.setAdapter(madapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedPlan=planList.get(i);
+               Intent intent = new Intent(getActivity(),EditPlanActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("plan",selectedPlan);
+                intent.putExtras(bundle);
+                intent.putExtra("CURRENT_LEAVE",1);
+                getActivity().startActivity(intent);
+            }
+        });
      weatherIconView.setFocusable(true);
         weatherIconView.setFocusableInTouchMode(true);
         weatherIconView.requestFocus();
