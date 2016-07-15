@@ -3,6 +3,7 @@ package com.example.akchen.main_ui.Adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import com.example.akchen.main_ui.Fragment.MainUIFragment;
 import com.example.akchen.main_ui.R;
@@ -23,6 +24,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private static ArrayList<String> locationList=new ArrayList<>();
 private static  TPWeatherManager weatherManager;
+    private MainUIFragment currentFragment = null;
 
     public static ArrayList<String> getLocationList() {
         return locationList;
@@ -87,4 +89,12 @@ private static  TPWeatherManager weatherManager;
         return locationList.size();
     }
 
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        currentFragment =(MainUIFragment)object ;
+        super.setPrimaryItem(container, position, object);
+    }
+
+    public MainUIFragment getCurrentFragment() {
+        return currentFragment;
+    }
 }

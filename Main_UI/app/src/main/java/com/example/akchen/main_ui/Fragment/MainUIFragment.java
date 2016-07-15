@@ -4,16 +4,20 @@ package com.example.akchen.main_ui.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.akchen.main_ui.Activity.EditPlanActivity;
+import com.example.akchen.main_ui.Activity.MainUIActivity;
 import com.example.akchen.main_ui.Activity.PlanScheduleActivity;
 import com.example.akchen.main_ui.Adapter.MyShowAdapter;
 import com.example.akchen.main_ui.R;
@@ -48,6 +52,7 @@ public class MainUIFragment extends Fragment {
     private TPAirQuality mAirQuaity = null; //天气质量
     private View mView = null;
     private List<Plan> dataList=new ArrayList<Plan>();
+    private SwipeRefreshLayout fresher = MainUIActivity.getFresher();  //刷新控件
 
     private WeatherDB weatherDB;
     // TODO: Rename and change types of parameters
@@ -236,6 +241,26 @@ public class MainUIFragment extends Fragment {
             }
         });
         FreshFragment();
+        ScrollView scrollView =( ScrollView) rt.findViewById(R.id.id_fragment_scollview);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_MOVE:
+                        int scrollY=view.getScrollY();
+                        if(scrollY==0) {
+                            //顶部
+                            fresher.setEnabled(true);
+                        }
+                        else
+                        {
+                            fresher.setEnabled(false);
+                        }
+                }
+
+                return false;
+            }
+        });
         return rt;
     }
 

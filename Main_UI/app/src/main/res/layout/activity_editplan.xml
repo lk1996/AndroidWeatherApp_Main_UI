@@ -22,7 +22,7 @@
         android:layout_margin="5dip"
         android:textColor="#ffffff"
         android:text="Back"
-        android:background="@color/home_round_progress_bar_blue"
+        android:background="#00000000"
         />
     <TextView
         android:layout_width="0dip"
@@ -34,7 +34,7 @@
         android:text="Title Text"
         android:textColor="#ffffff"
         android:textSize="24sp"
-        android:background="@color/home_round_progress_bar_blue"
+        android:background="#00000000"
 
         />
     <Button
@@ -46,14 +46,14 @@
         android:id="@+id/Menu"
         android:text="Menu"
         android:onClick="popupmenu"
-        android:background="@color/home_round_progress_bar_blue"
+        android:background="#00000000"
         />
 
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
 
@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="结束日期"
+            android:text="结束日期:"
             android:textColor="@color/home_round_progress_bar_blue"
 
             />
@@ -106,7 +106,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="341dp"
+            android:layout_height="480dp"
             android:id="@+id/edit_text"
             android:textColor="@color/textcolor_black"
             android:layout_below="@+id/linearLayout"
