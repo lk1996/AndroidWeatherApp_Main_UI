@@ -46,6 +46,7 @@ private static  TPWeatherManager weatherManager;
 
         String location=locationList.get(position);
        final  MainUIFragment mainFragment = MainUIFragment.newInstance();
+        mainFragment.setLocation(location);
 
         // 获取北京当前天气，使用简体中文、摄氏度
         weatherManager.getWeatherNow(new TPCity(location)

@@ -290,8 +290,15 @@ public class MainUIFragment extends Fragment {
 
     public static MainUIFragment newInstance() {
         MainUIFragment fragment = new MainUIFragment();
+
         return fragment;
     }
 
+    public String getWeatherInfo()
+    {
+        String weatherInfo="";
+        weatherInfo=mWeatherNow.text+" "+mWeatherNow.temperature+" ℃";
+        return weatherInfo;
+    }
 
 }
