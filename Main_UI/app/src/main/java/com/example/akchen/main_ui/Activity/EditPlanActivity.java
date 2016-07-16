@@ -23,9 +23,6 @@ import com.example.akchen.main_ui.others.utils.Plan;
 import com.example.akchen.main_ui.others.utils.WeatherDB;
 import com.example.akchen.main_ui.others.widget.DateTimeSelectorDialogBuilder;
 
-/**
- * Created by Jake on 16/7/11.
- */
 
 public class EditPlanActivity extends Activity implements DateTimeSelectorDialogBuilder.OnSaveListener, View.OnClickListener {
     private DateTimeSelectorDialogBuilder dialogBuilder;
@@ -63,23 +60,18 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
         editText.setMovementMethod(ScrollingMovementMethod.getInstance());
         editText.setSelection(editText.getText().length(), editText.getText().length());
         weatherDB = WeatherDB.getInstance(this);
-      /*
-        Intent intent =getIntent();
-        Bundle bundle = intent.getExtras();
-        Plan plan=(Plan)bundle.getSerializable("plan");
-        daTextView.setText(plan.getPlanName());
-        endTime.setText(String.valueOf(bundle.getInt("LEVEL_START")));
-        */
+
         final Intent intent = getIntent();
-        Bundle bundle= intent.getExtras();
-        final Plan intentPlan = (Plan) bundle.getSerializable("plan");
-        CURRENT_LEAVE = bundle.getInt("CURRENT_LEAVE");
+        final Plan intentPlan=(Plan)intent.getSerializableExtra("plan");
+
+        CURRENT_LEAVE=intent.getIntExtra("CURRENT_LEAVE",2);
         if (CURRENT_LEAVE == LEAVE_START) {
             editText.setText(intentPlan.getPlanContent());
             title.setText(intentPlan.getPlanName());
-        } else if (CURRENT_LEAVE == LEAVE_END) {
             daTextView.setText(intentPlan.getTimeStart());
             endTime.setText(intentPlan.getTimeEnd());
+        } else if (CURRENT_LEAVE == LEAVE_END) {
+
             title.setText("New Plan");
 
         }
