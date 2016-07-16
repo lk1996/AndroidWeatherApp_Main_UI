@@ -112,7 +112,85 @@ public class MainUIActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onSaveLocation(String location, String provinceId, String cityId) {
 
-        SectionsPagerAdapter.getLocationList().add("shanghai");
+        String pinyinLocation= "";
+        if(location.indexOf("北京")>=0)
+            pinyinLocation = "beijing";
+        if(location.indexOf("上海")>=0)
+            pinyinLocation = "shanghai";
+        if(location.indexOf("天津")>=0)
+            pinyinLocation = "tianjin";
+        if(location.indexOf("重庆")>=0)
+            pinyinLocation = "chongqing";
+        if(location.indexOf("香港")>=0)
+            pinyinLocation = "xianggang";
+        if(location.indexOf("澳门")>=0)
+            pinyinLocation = "aomen";
+        if(location.indexOf("台湾")>=0)
+            pinyinLocation = "taizhong";
+        if(location.indexOf("黑龙江")>=0)
+            pinyinLocation = "jixi";
+        if(location.indexOf("辽宁")>=0)
+            pinyinLocation = "dalian";
+        if(location.indexOf("内蒙古")>=0)
+            pinyinLocation = "fengzhen";
+        if(location.indexOf("河北")>=0)
+            pinyinLocation = "zhangjiakou";
+        if(location.indexOf("河南")>=0)
+            pinyinLocation = "luoyang";
+        if(location.indexOf("山西")>=0)
+            pinyinLocation = "linfen";
+        if(location.indexOf("山东")>=0)
+            pinyinLocation = "heze";
+        if(location.indexOf("江苏")>=0)
+            pinyinLocation = "lianyungang";
+        if(location.indexOf("浙江")>=0)
+            pinyinLocation = "quzhou";
+        if(location.indexOf("福建")>=0)
+            pinyinLocation = "xiamen";
+        if(location.indexOf("江西")>=0)
+            pinyinLocation = "ganzhou";
+        if(location.indexOf("安徽")>=0)
+            pinyinLocation = "hefei";
+        if(location.indexOf("湖北")>=0)
+            pinyinLocation = "wuhan";
+        if(location.indexOf("湖南")>=0)
+            pinyinLocation = "changsha";
+        if(location.indexOf("广东")>=0)
+            pinyinLocation = "zhanjiang";
+        if(location.indexOf("广西")>=0)
+            pinyinLocation = "nanning";
+        if(location.indexOf("海南")>=0)
+            pinyinLocation = "hainan";
+        if(location.indexOf("贵州")>=0)
+            pinyinLocation = "guiyang";
+        if(location.indexOf("云南")>=0)
+            pinyinLocation = "puer";
+        if(location.indexOf("四川")>=0)
+            pinyinLocation = "chengdu";
+        if(location.indexOf("西藏")>=0)
+            pinyinLocation = "lasa";
+        if(location.indexOf("陕西")>=0)
+            pinyinLocation = "hanzhong";
+        if(location.indexOf("宁夏")>=0)
+            pinyinLocation = "yinchuan";
+        if(location.indexOf("甘肃")>=0)
+            pinyinLocation = "qingyang";
+        if(location.indexOf("青海")>=0)
+            pinyinLocation = "yushu";
+        if(location.indexOf("新疆")>=0)
+            pinyinLocation = "hami";
+        ArrayList<String> locationlist =  SectionsPagerAdapter.getLocationList();
+        boolean flag = true;
+        for(int i=0;i<locationlist.size();i++)
+        {
+            if(locationlist.get(i).equals(pinyinLocation))
+                flag = false;
+        }
+
+        if(flag) {
+            SectionsPagerAdapter.getLocationList().add(pinyinLocation);
+            mSectionAdapter.notifyDataSetChanged();
+        }
         mSectionAdapter.notifyDataSetChanged();
 
     }

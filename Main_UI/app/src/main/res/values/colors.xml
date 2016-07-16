@@ -43,7 +43,7 @@
     <color name="home_round_progress_bar_blue">#ff3896F3</color>
     <!-- 首页上方环形进度条的默认颜色，灰色 -->
     <color name="home_round_progress_bar_default_gray">#D1D1D1</color>
-    <color name="dialog_pressed_bg_color">#cfcece</color>
+    <color name="dialog_pressed_bg_color">#e6e6e6</color>
     <!-- dialog条目默认的显示的背景 -->
     <color name="dialog_unpressed_bg_color">#FFFFFF</color>
     <!-- dialog背景半透明 -->

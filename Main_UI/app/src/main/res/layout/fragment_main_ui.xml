@@ -155,58 +155,60 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="29"
-                android:layout_marginTop="1dp"
-                android:background="@color/base_bg">
-
-                <TextView
-                    android:layout_width="67dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="记事"
-                    android:id="@+id/textView2"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="24sp"
-                    android:textColor="@color/home_round_progress_bar_blue" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/id_add_btn"
-                    android:background="@android:drawable/ic_input_add"
-                    android:layout_marginLeft="230dp" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></LinearLayout>
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:layout_marginTop="1dp">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="262dp"
-                android:id="@+id/id_list"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="1dp"
-                android:background="@color/base_bg"
-                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/base_bg">
+
+                    <TextView
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="记事"
+                        android:id="@+id/textView2"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="24sp"
+                        android:textColor="@color/home_round_progress_bar_blue" />
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/id_add_btn"
+                        android:background="@drawable/in_add"
+                        android:layout_marginLeft="250dp" />
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/id_list"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@color/base_bg"
+                    />
+
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:background="#FFFFFF">
 
                 <Button
                     android:text="Calendar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:id="@+id/buttonCalendar"
                     android:layout_weight="1"
-                    android:layout_marginTop="1dp"
                     android:background="@color/home_round_progress_bar_blue"
                     android:textColor="#FFFFFF"
                     android:layout_marginLeft="20dp"

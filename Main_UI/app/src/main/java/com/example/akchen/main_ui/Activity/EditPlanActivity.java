@@ -108,14 +108,14 @@ public class EditPlanActivity extends Activity implements DateTimeSelectorDialog
                             startActivity(intent1);
                         } else if (CURRENT_LEAVE == LEAVE_END) {
                             showDialog();
-                            //Log.d("EditPlanActivity",newPlanName+"------");
-
                         }
                         break;
                     case R.id.delete:
                         Toast.makeText(EditPlanActivity.this, "删除", Toast.LENGTH_SHORT).show();
                         if (CURRENT_LEAVE == LEAVE_START) {
                             weatherDB.delete("Plan", intentPlan.getId());
+                            Intent intent1 = new Intent(EditPlanActivity.this, MainUIActivity.class);
+                            startActivity(intent1);
                         } else if (CURRENT_LEAVE == LEAVE_END) {
                             Intent intent1 = new Intent(EditPlanActivity.this, MainUIActivity.class);
                             startActivity(intent1);

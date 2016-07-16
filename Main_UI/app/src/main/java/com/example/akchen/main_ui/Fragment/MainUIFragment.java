@@ -56,12 +56,10 @@ public class MainUIFragment extends Fragment {
     private SwipeRefreshLayout fresher = MainUIActivity.getFresher();  //刷新控件
     private List<Plan> planList;
     private Plan selectedPlan;
-
     private WeatherDB weatherDB;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private static final String LOCATION = "location";
 
     private ImageButton addPlanButton = null;
     private Button calendarButton = null;
@@ -180,6 +178,19 @@ public class MainUIFragment extends Fragment {
         }
         MyShowAdapter madapter = new MyShowAdapter(this.getActivity(), list);
         listView.setAdapter(madapter);
+
+        int totalHeight = 0;
+        for (int i = 0; i < madapter.getCount(); i++) {
+            View listItem = madapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (madapter.getCount()-1));
+        ((ViewGroup.MarginLayoutParams)params).setMargins(10, 10, 10, 10);
+        listView.setLayoutParams(params);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -279,12 +290,6 @@ public class MainUIFragment extends Fragment {
 
     public static MainUIFragment newInstance() {
         MainUIFragment fragment = new MainUIFragment();
-//
-//        Bundle args = new Bundle();
-//        args.putString(LOCATION, location);
-//        fragment.setArguments(args);
-//        SectionsPagerAdapter.getFragmentsList().add(SectionsPagerAdapter.getFragmentsList().size(), fragment);
-
         return fragment;
     }
 
